@@ -1,136 +1,253 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <title>idontknow</title>
-    <!-- 分頁小圖示 -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-    <!-- Font Awesome 圖示庫 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* 隱藏水平捲動條 */
-            font-family: Arial, sans-serif;
-        }
-
-        /* 頁首區域（Logo + 右上角按鈕） */
-        header {
-            position: relative; 
-            padding: 10px 20px;
-        }
-
-        /* 右上角按鈕 */
-        .header-buttons {
-            position: absolute; /* 相對於 header 定位 */
-            top: 40px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .header-buttons a {
-            color: black;
-            font-size: 20px;
-            padding: 8px;
-            border-radius: 50%;
-            text-align: center;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .header-buttons a:hover {
-            color: #ecf838;
-            transform: scale(1.2); /* 放大效果 */
-        }
-
-        /* 導覽列外框 */
-        nav {
-            background-color: #0132FF;
-            padding: 15px 20px;
-        }
-
-        /* 導覽列選單列表 */
-        nav ul {
-            list-style: none; /* 移除點點 */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-            justify-content: center; /* 水平置中 */
-        }
-
-        /* 導覽列項目 */
-        nav ul li a {
-            color: black;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #ecf838;
-            transform: scale(1.2);
-            /*background-color: #3498db;*/
-        }
-
-        /* 全寬圖片（固定高度） */
-        img.full-width {
-            width: 100vw;
-            height: 600px;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-        }
-
-        /* 頁尾 */
-        footer {
-            background-color: #ecf838;
-            color: black;
-            text-align: center;
-            padding: 10px 10px;
-            font-size: 14px;
-        }
-    </style>
+<meta charset="UTF-8" />
+<title>idontknow</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    position: relative;
+    padding: 10px 20px;
+  }
+  .header-buttons {
+    position: absolute;
+    top: 45px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+  }
+  .header-buttons a {
+    color: black;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    text-align: center;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .header-buttons a:hover {
+    color: #ecf838;
+    transform: scale(1.2);
+  }
+  nav {
+    background-color: #0132FF;
+    padding: 15px 20px;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  nav ul li a:hover {
+    background-color: #3498db;
+  }
+  /*照片輪播*/
+  .slideshow-container {
+    position: relative;
+    width: 100vw;
+    height: 870px;
+    overflow: hidden;
+  }
+  .slides-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+  }
+  .slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .prev { left: 20px; }
+  .next { right: 20px; }
+  .dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .dot.active {
+    background-color: white;
+  }
+  footer {
+    background-color: #ecf838;
+    color: black;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+</style>
 </head>
 <body>
+<header>
+  <img src="img/idonotknow.png" alt="idonotknow" style="height: 110px; display: block; margin: 0 auto;" />
+  <div class="header-buttons">
+    <a href="#" title="搜尋"><i class="fas fa-search"></i></a>
+    <a href="#" title="會員登入"><i class="fas fa-user"></i></a>
+    <a href="#" title="購物車"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="#">home</a></li>
+    <li><a href="#">sticker</a></li>
+    <li><a href="#">cloth</a></li>
+    <li><a href="#">us</a></li>
+  </ul>
+</nav>
+<div class="slideshow-container">
+  <div class="slides-wrapper" id="slidesWrapper">
+    <!-- 左端 clone 最後一張 -->
+    <img src="img/0021_18A.jpg" class="slide" alt="pizza4 clone" />
+    <!-- 真實圖片 -->
+    <img src="img/0007_4A.jpg" class="slide" alt="pizza1" />
+    <img src="img/0004_1A.jpg" class="slide" alt="pizza2" />
+    <img src="img/0011_8A.jpg" class="slide" alt="pizza3" />
+    <img src="img/0021_18A.jpg" class="slide" alt="pizza4" />
+    <!-- 右端 clone 第一張 -->
+    <img src="img/0007_4A.jpg" class="slide" alt="pizza1 clone" />
+  </div>
+  <div class="prev" onclick="changeSlide(-1)">&#10094;</div>
+  <div class="next" onclick="changeSlide(1)">&#10095;</div>
+  <div class="dots" id="dotsContainer"></div>
+</div>
 
-    <header>
-        <!-- Logo -->
-        <img src="img/idonotknow.png" alt="idonotknow" style="height: 110px; display: block; margin: 0 auto;">
+<h1>idonotknow</h1>
+<p>idonotknow</p>
+<footer>
+  <p><strong>© 2025 idontknow</strong></p>
+</footer>
+<script>
+  const slidesWrapper = document.getElementById("slidesWrapper");
+const slides = document.querySelectorAll(".slide");
+// 真實圖片數量，不包含 clone
+const realSlideCount = slides.length - 2;
+const dotsContainer = document.getElementById("dotsContainer");
+let currentIndex = 1;  // 從第一張真實圖片開始(因為index=0是clone最後一張)
+let isTransitioning = false;
+let slideInterval;
 
-        <!-- 右上角按鈕 -->
-        <div class="header-buttons">
-            <a href="#" title="搜尋"><i class="fas fa-search"></i></a>
-            <a href="#" title="會員登入"><i class="fas fa-user"></i></a>
-            <a href="#" title="購物車"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </header>
+// 建立小點點（數量 = 真實圖片張數）
+for(let i=0; i<realSlideCount; i++){
+  const dot = document.createElement("span");
+  dot.classList.add("dot");
+  if(i === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => goToSlide(i+1)); // 這邊 index+1 對應 slidesWrapper 位置
+  dotsContainer.appendChild(dot);
+}
+const dots = document.querySelectorAll(".dot");
 
-    <nav>
-        <ul>
-            <li><a href="#">home</a></li>
-            <li><a href="#">sticker</a></li>
-            <li><a href="#">cloth</a></li>
-            <li><a href="#">us</a></li>
-        </ul>
-    </nav>
+function updateDots(){
+  dots.forEach(dot => dot.classList.remove("active"));
+  // currentIndex 轉成0-base 真實圖片 index
+  let dotIndex = currentIndex - 1;
+  if(dotIndex < 0) dotIndex = realSlideCount - 1;
+  if(dotIndex >= realSlideCount) dotIndex = 0;
+  dots[dotIndex].classList.add("active");
+}
 
-    <!-- 圖片 -->
-    <img src="img/0007_4A.jpg" alt="觀世音披薩" class="full-width">
-    <img src="img/0004_1A.jpg" alt="販賣機" class="full-width">
-    <img src="img/0011_8A.jpg" alt="看什麼看" class="full-width">
+function changeSlide(direction){
+  if(isTransitioning) return;
+  isTransitioning = true;
 
-    <h1>idonotknow</h1>
-    <p>idonotknow</p>
+  currentIndex += direction;
+  slidesWrapper.style.transition = "transform 0.8s ease-in-out";
+  slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-    <footer>
-        <p><strong>© 2025 idontknow 我不想工作</strong></p>
-    </footer>
+  // 無縫循環判斷
+  if(currentIndex === slides.length - 1 && direction === 1){
+    // 往右滑到 clone 第一張，等動畫完跳回 真實第一張
+    setTimeout(() => {
+      slidesWrapper.style.transition = "none";
+      currentIndex = 1;
+      slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      isTransitioning = false;
+    }, 800);
+  }
+  else if(currentIndex === 0 && direction === -1){
+    // 往左滑到 clone 最後一張，等動畫完跳回 真實最後一張
+    setTimeout(() => {
+      slidesWrapper.style.transition = "none";
+      currentIndex = slides.length - 2;
+      slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      isTransitioning = false;
+    }, 800);
+  }
+  else {
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 800);
+  }
+  updateDots();
+  resetInterval();
+}
 
+function goToSlide(index){
+  if(isTransitioning) return;
+  isTransitioning = true;
+
+  currentIndex = index;
+  slidesWrapper.style.transition = "transform 0.8s ease-in-out";
+  slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+  setTimeout(() => {
+    isTransitioning = false;
+  }, 800);
+  updateDots();
+  resetInterval();
+}
+
+function resetInterval(){
+  clearInterval(slideInterval);
+  slideInterval = setInterval(() => changeSlide(1), 4000);
+}
+
+window.onload = () => {
+  // 初始設定起始位置到第一張真實圖（index=1）
+  slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+  resetInterval();
+};
+</script>
 </body>
 </html>
