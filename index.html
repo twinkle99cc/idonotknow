@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>idontknow</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 <style>
   body {
     margin: 0;
@@ -110,6 +110,8 @@
   .dot.active {
     background-color: white;
   }
+  
+  /* 頁尾 */
   footer {
     background-color: #ecf838;
     color: black;
@@ -117,9 +119,44 @@
     padding: 10px 10px;
     font-size: 14px;
   }
+  /* icon 區塊 */
+  .footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2px; /* 距離縮小 */
+}
+
+footer p {
+  margin-top: 0;  /* 移除多餘空隙 */
+}
+
+  .footer-buttons a {
+    color: black; 
+    padding: 8px;
+    border-radius: 50%;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .footer-buttons i {
+    font-size: 30px; /*調整icon大小*/
+  }
+
+  .footer-buttons a:hover {
+    transform: scale(1.2);
+  }
+
+  /* 個別 hover 顏色 */
+  .footer-buttons a.instagram:hover { color: #e1306c; text-shadow: 0 0 8px rgba(255, 0, 153, 0.6);} /* Instagram 粉紅 */
+  .footer-buttons a.threads:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.6);}/* Threads 白色 */
 </style>
+
 </head>
-<body>
+
+  <body>
+    
+  </body>
+
 <header>
   <img src="img/idonotknow.png" alt="idonotknow" style="height: 110px; display: block; margin: 0 auto;" />
   <div class="header-buttons">
@@ -155,9 +192,8 @@
 
 <h1>idonotknow</h1>
 <p>idonotknow</p>
-<footer>
-  <p><strong>© 2025 idontknow</strong></p>
-</footer>
+
+
 <script>
   const slidesWrapper = document.getElementById("slidesWrapper");
 const slides = document.querySelectorAll(".slide");
@@ -250,4 +286,18 @@ window.onload = () => {
 };
 </script>
 </body>
+
+<!-- 頁尾 -->
+<footer>
+  <div class="footer-buttons">
+      <a href="https://www.instagram.com/mcudc26?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="instagram" title="instagram">
+      <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.threads.net/@mcudc26" class="threads" title="threads">
+      <i class="fa-brands fa-threads"></i>
+      </a>
+  </div>
+  <p><strong>© 2025．idontknow</strong></p>
+</footer>
+
 </html>
