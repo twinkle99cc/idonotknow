@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<title>sticker</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+<style>
+    /* Header */
+  header {
+    position: relative;
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .header-buttons {
+    position: absolute;
+    top: 45px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+  }
+  .header-buttons a {
+    color: black;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    text-align: center;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .header-buttons a:hover {
+    color: #ecf838;
+    transform: scale(1.2);
+  }
+
+  /* Navigation */
+  nav {
+    background-color: #0132FF;
+    padding: 15px 20px;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  nav ul li a:hover {
+    background-color: #3498db;
+  }
+  /* Footer */
+  footer {
+    background-color: #ecf838;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2px;
+  }
+  footer p {
+    margin: 0;
+  }
+  .footer-buttons a {
+    color: black; 
+    padding: 8px;
+    border-radius: 50%;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .footer-buttons i {
+    font-size: 30px;
+  }
+  .footer-buttons a:hover {
+    transform: scale(1.2);
+  }
+  .footer-buttons a.instagram:hover {
+    color: #e1306c;
+    text-shadow: 0 0 8px rgba(255, 0, 153, 0.6);
+  }
+  .footer-buttons a.threads:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  }
+</style>
+</head>
+<body>
+    <header>
+  <img src="img/idonotknow.png" alt="idonotknow" style="height:110px;" />
+  <div class="header-buttons">
+    <a href="#" title="搜尋"><i class="fas fa-search"></i></a>
+    <a href="#" title="購物車"><i class="fas fa-shopping-cart"></i></a>
+    <a href="#" title="會員登入"><i class="fas fa-user"></i></a>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">home</a></li>
+    <li><a href="sticker.html" target="_blank" rel="noopener noreferrer">sticker</a></li>
+    <li><a href="cloth.html">cloth</a></li>
+    <li><a href="us.html">us</a></li>
+  </ul>
+</nav>
+    <p>hey</p>
+    <footer>
+  <div class="footer-buttons">
+    <a href="https://www.instagram.com/iddnkown" 
+       class="instagram" title="instagram" 
+       target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.threads.com/@iddnkown" 
+       class="threads" title="threads" 
+       target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-threads"></i>
+    </a>
+  </div>
+  <p><strong>&copy; 2025 &bull; idonotknow</strong></p>
+</footer>
+
+</body>
+</html>

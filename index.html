@@ -12,9 +12,12 @@
     overflow-x: hidden;
     font-family: Arial, sans-serif;
   }
+
+  /* Header */
   header {
     position: relative;
     padding: 10px 20px;
+    text-align: center;
   }
   .header-buttons {
     position: absolute;
@@ -35,6 +38,8 @@
     color: #ecf838;
     transform: scale(1.2);
   }
+
+  /* Navigation */
   nav {
     background-color: #0132FF;
     padding: 15px 20px;
@@ -58,7 +63,8 @@
   nav ul li a:hover {
     background-color: #3498db;
   }
-  /*照片輪播*/
+
+  /* Slideshow */
   .slideshow-container {
     position: relative;
     width: 100vw;
@@ -110,79 +116,76 @@
   .dot.active {
     background-color: white;
   }
-  
-  /* 頁尾 */
+
+  /* Footer */
   footer {
     background-color: #ecf838;
     color: black;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px;
     font-size: 14px;
   }
-  /* icon 區塊 */
   .footer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 2px; /* 距離縮小 */
-}
-
-footer p {
-  margin-top: 0;  /* 移除多餘空隙 */
-}
-
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2px;
+  }
+  footer p {
+    margin: 0;
+  }
   .footer-buttons a {
     color: black; 
     padding: 8px;
     border-radius: 50%;
     transition: color 0.3s, transform 0.3s;
   }
-
   .footer-buttons i {
-    font-size: 30px; /*調整icon大小*/
+    font-size: 30px;
   }
-
   .footer-buttons a:hover {
     transform: scale(1.2);
   }
-
-  /* 個別 hover 顏色 */
-  .footer-buttons a.instagram:hover { color: #e1306c; text-shadow: 0 0 8px rgba(255, 0, 153, 0.6);} /* Instagram 粉紅 */
-  .footer-buttons a.threads:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.6);}/* Threads 白色 */
+  .footer-buttons a.instagram:hover {
+    color: #e1306c;
+    text-shadow: 0 0 8px rgba(255, 0, 153, 0.6);
+  }
+  .footer-buttons a.threads:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  }
 </style>
-
 </head>
-
-  <body>
-    
-  </body>
+<body>
 
 <header>
-  <img src="img/idonotknow.png" alt="idonotknow" style="height: 110px; display: block; margin: 0 auto;" />
+  <img src="img/idonotknow.png" alt="idonotknow" style="height:110px;" />
   <div class="header-buttons">
     <a href="#" title="搜尋"><i class="fas fa-search"></i></a>
-    <a href="#" title="會員登入"><i class="fas fa-user"></i></a>
     <a href="#" title="購物車"><i class="fas fa-shopping-cart"></i></a>
+    <a href="#" title="會員登入"><i class="fas fa-user"></i></a>
   </div>
 </header>
+
 <nav>
   <ul>
-    <li><a href="#">home</a></li>
-    <li><a href="#">sticker</a></li>
-    <li><a href="#">cloth</a></li>
-    <li><a href="#">us</a></li>
+    <li><a href="index.html">home</a></li>
+    <li><a href="sticker.html" target="_blank" rel="noopener noreferrer">sticker</a></li>
+    <li><a href="cloth.html">cloth</a></li>
+    <li><a href="us.html">us</a></li>
   </ul>
 </nav>
+
 <div class="slideshow-container">
   <div class="slides-wrapper" id="slidesWrapper">
-    <!-- 左端 clone 最後一張 -->
+    <!-- clone 最後一張 -->
     <img src="img/0021_18A.jpg" class="slide" alt="pizza4 clone" />
     <!-- 真實圖片 -->
     <img src="img/0007_4A.jpg" class="slide" alt="pizza1" />
     <img src="img/0004_1A.jpg" class="slide" alt="pizza2" />
     <img src="img/0011_8A.jpg" class="slide" alt="pizza3" />
     <img src="img/0021_18A.jpg" class="slide" alt="pizza4" />
-    <!-- 右端 clone 第一張 -->
+    <!-- clone 第一張 -->
     <img src="img/0007_4A.jpg" class="slide" alt="pizza1 clone" />
   </div>
   <div class="prev" onclick="changeSlide(-1)">&#10094;</div>
@@ -193,30 +196,27 @@ footer p {
 <h1>idonotknow</h1>
 <p>idonotknow</p>
 
-
 <script>
-  const slidesWrapper = document.getElementById("slidesWrapper");
+const slidesWrapper = document.getElementById("slidesWrapper");
 const slides = document.querySelectorAll(".slide");
-// 真實圖片數量，不包含 clone
 const realSlideCount = slides.length - 2;
 const dotsContainer = document.getElementById("dotsContainer");
-let currentIndex = 1;  // 從第一張真實圖片開始(因為index=0是clone最後一張)
+let currentIndex = 1;
 let isTransitioning = false;
 let slideInterval;
 
-// 建立小點點（數量 = 真實圖片張數）
+// 建立小點
 for(let i=0; i<realSlideCount; i++){
   const dot = document.createElement("span");
   dot.classList.add("dot");
-  if(i === 0) dot.classList.add("active");
-  dot.addEventListener("click", () => goToSlide(i+1)); // 這邊 index+1 對應 slidesWrapper 位置
+  if(i===0) dot.classList.add("active");
+  dot.addEventListener("click", () => goToSlide(i+1));
   dotsContainer.appendChild(dot);
 }
 const dots = document.querySelectorAll(".dot");
 
 function updateDots(){
   dots.forEach(dot => dot.classList.remove("active"));
-  // currentIndex 轉成0-base 真實圖片 index
   let dotIndex = currentIndex - 1;
   if(dotIndex < 0) dotIndex = realSlideCount - 1;
   if(dotIndex >= realSlideCount) dotIndex = 0;
@@ -226,34 +226,26 @@ function updateDots(){
 function changeSlide(direction){
   if(isTransitioning) return;
   isTransitioning = true;
-
   currentIndex += direction;
   slidesWrapper.style.transition = "transform 0.8s ease-in-out";
   slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-  // 無縫循環判斷
   if(currentIndex === slides.length - 1 && direction === 1){
-    // 往右滑到 clone 第一張，等動畫完跳回 真實第一張
     setTimeout(() => {
       slidesWrapper.style.transition = "none";
       currentIndex = 1;
       slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
       isTransitioning = false;
     }, 800);
-  }
-  else if(currentIndex === 0 && direction === -1){
-    // 往左滑到 clone 最後一張，等動畫完跳回 真實最後一張
+  } else if(currentIndex === 0 && direction === -1){
     setTimeout(() => {
       slidesWrapper.style.transition = "none";
       currentIndex = slides.length - 2;
       slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
       isTransitioning = false;
     }, 800);
-  }
-  else {
-    setTimeout(() => {
-      isTransitioning = false;
-    }, 800);
+  } else {
+    setTimeout(()=>{isTransitioning=false;},800);
   }
   updateDots();
   resetInterval();
@@ -262,42 +254,40 @@ function changeSlide(direction){
 function goToSlide(index){
   if(isTransitioning) return;
   isTransitioning = true;
-
   currentIndex = index;
   slidesWrapper.style.transition = "transform 0.8s ease-in-out";
   slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-  setTimeout(() => {
-    isTransitioning = false;
-  }, 800);
+  setTimeout(()=>{isTransitioning=false;},800);
   updateDots();
   resetInterval();
 }
 
 function resetInterval(){
   clearInterval(slideInterval);
-  slideInterval = setInterval(() => changeSlide(1), 4000);
+  slideInterval = setInterval(()=>changeSlide(1),4000);
 }
 
 window.onload = () => {
-  // 初始設定起始位置到第一張真實圖（index=1）
   slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
   resetInterval();
 };
 </script>
-</body>
 
-<!-- 頁尾 -->
 <footer>
   <div class="footer-buttons">
-      <a href="https://www.instagram.com/mcudc26?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="instagram" title="instagram">
+    <a href="https://www.instagram.com/iddnkown" 
+       class="instagram" title="instagram" 
+       target="_blank" rel="noopener noreferrer">
       <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="https://www.threads.net/@mcudc26" class="threads" title="threads">
+    </a>
+    <a href="https://www.threads.com/@iddnkown" 
+       class="threads" title="threads" 
+       target="_blank" rel="noopener noreferrer">
       <i class="fa-brands fa-threads"></i>
-      </a>
+    </a>
   </div>
-  <p><strong>© 2025．idontknow</strong></p>
+  <p><strong>&copy; 2025 &bull; idonotknow</strong></p>
 </footer>
 
+</body>
 </html>
